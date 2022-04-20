@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card card-body">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="container">
+            <div class="row">
+                <aside class="col-sm-6">
+                    <div class="card">
+                        <article class="card-group-item">
+                            <header class="card-header">
+                                <h6 class="title">Genres </h6>
+                            </header>
+                            <div class="filter-content">
+                                <div class="card-body">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                {% for value, genre_choice in search_form.fields.genres.choices %}
+                                                {% if not forloop.counter|divisibleby:2 %}
+                                                <label class="form-check">
+                                                    <input class="form-check-input" type="checkbox" name="genres" value="{{ value }}">
+                                                    <span class="form-check-label">
+                                                        {{ genre_choice }}
+                                                    </span>
+                                                </label>
+                                                {% endif %}
+                                                {% endfor %}
+                                            </div>
+                                            <div class="col-sm">
+                                                {% for value, genre_choice in search_form.fields.genres.choices %}
+                                                {% if forloop.counter|divisibleby:2 %}
+                                                <label class="form-check">
+                                                    <input class="form-check-input" type="checkbox" name="genres" value="{{ value }}">
+                                                    <span class="form-check-label">
+                                                        {{ genre_choice }}
+                                                    </span>
+                                                </label>
+                                                {% endif %}
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> <!-- card-body.// -->
+                            </div>
+                        </article> <!-- Genres selection -->
+                    </div> <!-- card.// -->
+
+                </aside> <!-- col.// -->
+                <aside class="col-sm-3">
+                    <div class="card">
+                        <article class="card-group-item">
+                            <header class="card-header">
+                                <h6 class="title">Select year range</h6>
+                            </header>
+                            <div class="filter-content">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <input type="number" value="1900" min="1900" max="2021" id="year_min" name="year_min" class="form-control" />
+                                            <label for="year_min" class=""></label>
+                                        </div>
+                                        <div class="col">
+                                            <input type="number" value="2022" min="1901" max="2022" id="year_max" name="year_max" class="form-control" />
+                                            <label for="year_max" class=""></label>
+                                        </div>
+                                    </div>
+                                </div> <!-- card-body.// -->
+                            </div>
+                        </article> <!-- Year selection -->
+                        <article class="card-group-item">
+                            <header class="card-header">
+                                <h6 class="title">Duration</h6>
+                            </header>
+                            <div class="filter-content">
+                                <div class="card-body">
+                                    {% for value, duration_choice in search_form.fields.duration_choice.choices %}
+                                    <label class="form-check">
+                                        <input class="form-check-input" type="radio" name="duration_choice" value="{{ value }}">
+                                        <span class="form-check-label">
+                                            {{ duration_choice }}
+                                        </span>
+                                    </label>
+                                    {% endfor %}
+                                </div> <!-- card-body.// -->
+                            </div>
+                        </article> <!-- Duration selection -->
+                        <article class="card-group-item">
+                            <header class="card-header">
+                                <h6 class="title">Rating</h6>
+                            </header>
+                            <div class="filter-content">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <input type="number" step="0.1" value="1.0" min="1.0" max="10" id="rating_min" name="rating_min" class="form-control" />
+                                            <label for="rating_min" class=""></label>
+                                        </div>
+                                        <div class="col">
+                                            <input type="number" step="0.1" value="10" min="1.1" max="10" id="rating_max" name="rating_max" class="form-control" />
+                                            <label for="rating_max" class=""></label>
+                                        </div>
+                                    </div>
+                                </div> <!-- card-body.// -->
+                            </div>
+                        </article> <!-- Rating selection -->
+                    </div> <!-- card.// -->
+                </aside> <!-- col.// -->
+
+                <aside class="col-sm-3">
+                    <div class="card">
+                        <article class="card-group-item">
+                            <header class="card-header">
+                                <h6 class="title">Select parameters</h6>
+                            </header>
+                            <div class="filter-content">
+                                <div class="card-body">
+                                    {% for value, param in search_form.fields.parameters.choices %}
+                                    <label class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="parameters" value="{{ value }}" checked>
+                                        <span class="form-check-label">
+                                            {{ param }}
+                                        </span>
+                                    </label>
+                                    {% endfor %}
+                                </div> <!-- card-body.// -->
+                            </div>
+                        </article> <!-- Duration selection -->
+                    </div> <!-- card.// -->
+                </aside> <!-- col.// -->
+
+            </div> <!-- row.// -->
+        </div>
+        <hr class="mb-2">
+        <div class="d-flex justify-content-center">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
