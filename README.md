@@ -10,7 +10,7 @@ Create a virtual environment to store your projects dependencies separately.
 
 ` pip install virtualenv `
 
-` virtual venv `
+` virtualenv venv `
 
 This will create a new directory called ` venv `.
 
