@@ -24,6 +24,8 @@ Activate your virtual environment.
 
 Install project dependencies.
 
+` cd superfilms `
+
 ` pip install -r requirements.txt `
 
 Setup the database. Change ` DATABASES ` properties in ` movies\settings.py ` if needed. Then run:
